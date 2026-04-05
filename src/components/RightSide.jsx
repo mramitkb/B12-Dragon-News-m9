@@ -1,8 +1,13 @@
 import React from "react";
+import swimmingImg from "../assets/swimming.png"
+import classImg from "../assets/class.png"
+import playgroundImg from "../assets/playground.png"
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const RightSide = () => {
   return (
     <div>
+        {/* Login with */}
       <div>
         <h1 className="font-bold text-xl">Login with</h1>
         <div className="mt-6 w-full space-y-2">
@@ -55,6 +60,35 @@ const RightSide = () => {
           </button>
         </div>
       </div>
+      {/* Find Us On */}
+      <div className="mt-6">
+        <h1 className="font-bold text-xl">Find Us On</h1>
+        <div className="mt-4 w-full border border-base-300 rounded-sm">
+            <div className="flex items-center gap-2 p-3">
+               <FaFacebook className="text-2xl"/>
+                <p className="text-accent text-lg font-medium">Facebook</p>
+            </div>
+            <hr className="text-base-300"/>
+            <div className="flex items-center gap-2 p-3">
+               <FaTwitter className="text-2xl"/>
+                <p className="text-accent text-lg font-medium">Twitter</p>
+            </div>
+            <hr className="text-base-300"/>
+            <div className="flex items-center gap-2 p-3">
+               <FaInstagram className="text-2xl"/>
+                <p className="text-accent text-lg font-medium">Instagram</p>
+            </div>
+        </div>
+      </div>
+        {/* Q-Zone */}
+        <div className="mt-6 bg-base-200 p-2 rounded-sm">
+            <h1 className="font-bold text-xl">Q-Zone</h1>
+            <div>
+                <img src={swimmingImg} alt="" />
+                <img src={classImg} alt="" />
+                <img src={playgroundImg} alt="" />
+            </div>
+        </div>
     </div>
   );
 };
