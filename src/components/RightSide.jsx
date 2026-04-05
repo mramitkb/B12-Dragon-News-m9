@@ -83,10 +83,10 @@ const RightSide = () => {
         {/* Q-Zone */}
         <div className="mt-6 bg-base-200 p-2 rounded-sm">
             <h1 className="font-bold text-xl">Q-Zone</h1>
-            <div>
-                <img src={swimmingImg} alt="" />
-                <img src={classImg} alt="" />
-                <img src={playgroundImg} alt="" />
+            <div className="flex flex-col items-center w-full">
+                <img className="object-cover w-fit md:w-[70%]" src={swimmingImg} alt="" />
+                <img className="object-cover w-fit md:w-[70%]" src={classImg} alt="" />
+                <img className="object-cover w-fit md:w-[70%]" src={playgroundImg} alt="" />
             </div>
         </div>
     </div>
