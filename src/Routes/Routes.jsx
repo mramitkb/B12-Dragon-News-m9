@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import HomeOutlet from "../pages/HomeOutlet";
 import MainLayout from "../layouts/MainLayout";
+import CategoryNews from "../pages/CategoryNews";
 
 export const router = createBrowserRouter([
     {
@@ -11,6 +12,11 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomeOutlet></HomeOutlet>
+            },
+            {
+                path: "/category/:id",
+                loader: () => fetch("/news.json"),
+                element: <CategoryNews></CategoryNews>
             }
         ]
     }
