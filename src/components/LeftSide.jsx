@@ -6,7 +6,7 @@ const fetchCategories = fetch("/categories.json").then((res) => res.json());
 const LeftSide = () => {
   const categories = use(fetchCategories);
   return (
-    <div>
+    <div className="sticky w-fit top-5">
       <h1 className="font-bold ml-5 text-xl">All Category</h1>
 
       {/* Categories */}

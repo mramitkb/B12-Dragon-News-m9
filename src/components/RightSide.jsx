@@ -6,7 +6,7 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const RightSide = () => {
   return (
-    <div>
+    <div className="sticky w-fit top-5">
         {/* Login with */}
       <div>
         <h1 className="font-bold text-xl">Login with</h1>

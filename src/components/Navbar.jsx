@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import MyLink from './MyLink';
 import userLogo from "../assets/user.png";
 
 const Navbar = () => {
     return (
-        <div className='flex items-center justify-between mt-6'>
+        <div className='flex items-center justify-between pt-6'>
             <div></div>
             <div className='space-x-5 text-accent font-semibold'>
                 <MyLink to="/">Home</MyLink>
@@ -14,7 +14,7 @@ const Navbar = () => {
             </div>
             <div className='flex items-center gap-3'>
                 <img src={userLogo} alt="" />
-                <button className='btn btn-primary px-8'>Login</button>
+                <Link to={"/login"} className='btn btn-primary px-8'>Login</Link>
             </div>
         </div>
     );
