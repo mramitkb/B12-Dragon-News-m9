@@ -42,8 +42,13 @@ const Registration = () => {
           className="input w-full bg-base-200 border-none outline-none py-6 focus:shadow-none"
           placeholder="Enter Your Password"
         />
+        {/* T & C */}
+        <label className="label mt-2">
+    <input type="checkbox" className="checkbox checkbox-xs rounded-sm" />
+    Accept Our Terms & Conditions.
+  </label>
 
-        <button className="btn btn-primary mt-4">Login</button>
+        <button type="submit" className="btn btn-primary mt-4">Login</button>
         <p className="my-4 text-center text-sm">
           Don't have an Account?{" "}
           <Link

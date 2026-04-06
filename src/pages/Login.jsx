@@ -26,8 +26,10 @@ const Login = () => {
           className="input w-full bg-base-200 border-none outline-none py-6 focus:shadow-none"
           placeholder="Enter Your Password"
         />
+        {/* Forgot Password */}
+        <div className="mt-2"><Link to="" className="link link-hover text-sm">Forgot password?</Link></div>
 
-        <button className="btn btn-primary mt-4">Login</button>
+        <button type="submit" className="btn btn-primary mt-4">Login</button>
         <p className="my-4 text-center text-sm">
           Don't have an Account?{" "}
           <Link
