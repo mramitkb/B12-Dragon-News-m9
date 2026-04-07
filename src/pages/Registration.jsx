@@ -1,18 +1,29 @@
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { toast, Zoom } from "react-toastify";
 
 const Registration = () => {
-  const { createUser } = use(AuthContext);
+  const {
+    setUser,
+    setLoading,
+    createUser,
+    updateUserProfile,
+    userEmailVerification,
+    signOutUser,
+  } = use(AuthContext);
   const [error, setError] = useState("");
   const [terms, setTerms] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleRegistration = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+
+    const displayName = form.name.value;
     const photoURL = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
@@ -36,14 +47,54 @@ const Registration = () => {
     // Create User
     createUser(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        console.log(result.user);
+
+        // Update User
+        updateUserProfile(displayName, photoURL).then().catch();
+
+        // Email verification
+        userEmailVerification()
+          .then(() => {
+            setLoading(false);
+            toast.info("Verify your email to Login!", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              theme: "light",
+              transition: Zoom,
+            });
+          })
+          .catch();
+
+        // Sign Out User
+        signOutUser()
+          .then(() => {
+            setLoading(false);
+            setUser(null);
+            // to login page
+            navigate("/auth/login");
+          })
+          .catch();
+
+        e.target.reset();
       })
       .catch((error) => {
-        setError(error.code);
+        toast.error(error.code, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
       });
-
-    console.log({ name, photoURL, email, password, terms });
   };
 
   return (
@@ -93,7 +144,12 @@ const Registration = () => {
             placeholder="Enter Your Password"
             required
           />
-          <span onClick={() => setShowPassword(!showPassword)} className="absolute top-4 right-3 text-base">{showPassword ? <FaEye /> : <FaEyeSlash />}</span>
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute top-4 right-3 text-base"
+          >
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
+          </span>
         </div>
         {/* T & C */}
         <label className="label mt-2">
