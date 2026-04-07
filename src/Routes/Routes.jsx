@@ -6,12 +6,15 @@ import NewsDetails from "../pages/NewsDetails";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import AuthLayout from "../layouts/AuthLayout";
+import About from "../pages/About";
+import Career from "../pages/Career";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <p>Error...404</p>,
+    hydrateFallbackElement: <p>Error ... 404</p>,
     children: [
       {
         index: true,
@@ -27,6 +30,14 @@ export const router = createBrowserRouter([
         loader: () => fetch("/news.json"),
         element: <NewsDetails></NewsDetails>,
       },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path: "/career",
+        element: <Career></Career>
+      }
     ],
   },
   {

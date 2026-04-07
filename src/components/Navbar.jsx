@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import MyLink from './MyLink';
 import userLogo from "../assets/user.png";
+import { AuthContext } from '../contexts/AuthContext/AuthContext';
 
 const Navbar = () => {
+    const {createUser} = use(AuthContext);
+
     return (
         <div className='flex items-center justify-between pt-6'>
             <div></div>
