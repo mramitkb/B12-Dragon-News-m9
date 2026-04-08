@@ -12,7 +12,6 @@ const RightSide = () => {
     use(AuthContext);
 
     const location = useLocation();
-    console.log(location);
   const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
@@ -21,7 +20,7 @@ const RightSide = () => {
         setLoading(false);
         const user = result.user;
         // setUser(user);
-        console.log(user);
+        // console.log(user);
         toast.success("Google Login successful.", {
           position: "top-right",
           autoClose: 2000,
@@ -56,7 +55,7 @@ const RightSide = () => {
         setLoading(false);
         const user = result.user;
         // setUser(user);
-        console.log(user);
+        // console.log(user);
         toast.success("Github Login successful.", {
           position: "top-right",
           autoClose: 2000,

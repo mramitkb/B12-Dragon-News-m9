@@ -47,7 +47,7 @@ const Registration = () => {
     // Create User
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         // Update User
         updateUserProfile(displayName, photoURL).then().catch();

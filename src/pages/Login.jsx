@@ -18,7 +18,7 @@ const Login = () => {
   const emailRef = useRef();
 
   const location = useLocation();
-  console.log(location);
+//   console.log(location);
   const navigate = useNavigate();
 
   const handleSignIn = (e) => {
@@ -35,7 +35,7 @@ const Login = () => {
 
         if (!user.emailVerified) {
           toast.info("Email address must be verified!", {
-            position: "top-left",
+            position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -48,12 +48,12 @@ const Login = () => {
 
           signOutUser().then(() => {
             setLoading(false);
-            console.log("sign out");
+            // console.log("sign out");
           });
 
           return;
         }
-        setUser(user);
+        // setUser(user);
         toast.success("Sign In successful.", {
           position: "top-right",
           autoClose: 2000,
@@ -74,7 +74,6 @@ const Login = () => {
     e.target.reset();
   };
   const handleForgotPassword = () => {
-    console.log("forgot");
     const email = emailRef.current.value;
 
     if (!email) {
@@ -121,7 +120,7 @@ const Login = () => {
           setLoading(false);
           const user = result.user;
           // setUser(user);
-        console.log(user);
+        // console.log(user);
         toast.success("Google Login successful.", {
           position: "top-right",
           autoClose: 2000,
@@ -155,7 +154,8 @@ const Login = () => {
      .then((result) => {
         setLoading(false);
         const user = result.user;
-        console.log(user);
+        // setUser(user);
+        // console.log(user);
         toast.success("Github Login successful.", {
           position: "top-right",
           autoClose: 2000,
