@@ -166,7 +166,7 @@ const Registration = () => {
         <button
           //   disabled={!terms}
           type="submit"
-          className="btn btn-primary mt-4"
+          className="btn btn-primary hover:bg-info hover:border-none hover:text-black mt-4"
         >
           Registration
         </button>

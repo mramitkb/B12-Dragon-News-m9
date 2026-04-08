@@ -26,9 +26,8 @@ const Navbar = () => {
           theme: "light",
           transition: Zoom,
         });
-        console.log(user);
         setUser(null);
-        navigate("/auth/login")
+        navigate("/auth/login");
       })
       .catch();
   };

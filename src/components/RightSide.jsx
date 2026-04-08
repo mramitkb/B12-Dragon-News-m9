@@ -1,18 +1,103 @@
-import React from "react";
-import swimmingImg from "../assets/swimming.png"
-import classImg from "../assets/class.png"
-import playgroundImg from "../assets/playground.png"
+import React, { use } from "react";
+import swimmingImg from "../assets/swimming.png";
+import classImg from "../assets/class.png";
+import playgroundImg from "../assets/playground.png";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { AuthContext } from "../contexts/AuthContext/AuthContext";
+import { toast, Zoom } from "react-toastify";
+import { useLocation, useNavigate } from "react-router";
 
 const RightSide = () => {
+  const { user, setLoading, signInWithGoogle, signInWithGithub } =
+    use(AuthContext);
+
+    const location = useLocation();
+    console.log(location);
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        setLoading(false);
+        const user = result.user;
+        // setUser(user);
+        console.log(user);
+        toast.success("Google Login successful.", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        toast.error(error.code, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+      });
+  };
+  const handleGithubSignIn = () => {
+    signInWithGithub()
+      .then((result) => {
+        setLoading(false);
+        const user = result.user;
+        // setUser(user);
+        console.log(user);
+        toast.success("Github Login successful.", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        toast.error(error.code, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
+      });
+  };
+
   return (
     <div className="sticky w-fit top-5">
-        {/* Login with */}
-      <div>
+      {/* Login with */}
+      {
+        user ? "" :<div>
         <h1 className="font-bold text-xl">Login with</h1>
         <div className="mt-6 w-full space-y-2">
-        {/* Google */}
-          <button className="btn w-full bg-white text-black border-[#e5e5e5]">
+          {/* Google */}
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn w-full bg-white text-black border-[#e5e5e5]"
+          >
             <svg
               aria-label="Google logo"
               width="16"
@@ -42,8 +127,11 @@ const RightSide = () => {
             </svg>
             Login with Google
           </button>
-        {/* GitHub */}
-          <button className="btn w-full bg-black text-white border-black">
+          {/* GitHub */}
+          <button
+            onClick={handleGithubSignIn}
+            className="btn w-full bg-black text-white border-black"
+          >
             <svg
               aria-label="GitHub logo"
               width="16"
@@ -60,35 +148,48 @@ const RightSide = () => {
           </button>
         </div>
       </div>
+      }
       {/* Find Us On */}
-      <div className="mt-6">
+      <div className={`${user ? "mt-0" : "mt-6"}`}>
         <h1 className="font-bold text-xl">Find Us On</h1>
         <div className="mt-4 w-full border border-base-300 rounded-sm">
-            <div className="flex items-center gap-2 p-3">
-               <FaFacebook className="text-2xl"/>
-                <p className="text-accent text-lg font-medium">Facebook</p>
-            </div>
-            <hr className="text-base-300"/>
-            <div className="flex items-center gap-2 p-3">
-               <FaTwitter className="text-2xl"/>
-                <p className="text-accent text-lg font-medium">Twitter</p>
-            </div>
-            <hr className="text-base-300"/>
-            <div className="flex items-center gap-2 p-3">
-               <FaInstagram className="text-2xl"/>
-                <p className="text-accent text-lg font-medium">Instagram</p>
-            </div>
+          <div className="flex items-center gap-2 p-3">
+            <FaFacebook className="text-2xl" />
+            <p className="text-accent text-lg font-medium">Facebook</p>
+          </div>
+          <hr className="text-base-300" />
+          <div className="flex items-center gap-2 p-3">
+            <FaTwitter className="text-2xl" />
+            <p className="text-accent text-lg font-medium">Twitter</p>
+          </div>
+          <hr className="text-base-300" />
+          <div className="flex items-center gap-2 p-3">
+            <FaInstagram className="text-2xl" />
+            <p className="text-accent text-lg font-medium">Instagram</p>
+          </div>
         </div>
       </div>
-        {/* Q-Zone */}
-        <div className="mt-6 bg-base-200 p-2 rounded-sm">
-            <h1 className="font-bold text-xl">Q-Zone</h1>
-            <div className="flex flex-col items-center w-full">
-                <img className="object-cover w-fit md:w-[70%]" src={swimmingImg} alt="" />
-                <img className="object-cover w-fit md:w-[70%]" src={classImg} alt="" />
-                <img className="object-cover w-fit md:w-[70%]" src={playgroundImg} alt="" />
-            </div>
+      {/* Q-Zone */}
+      <div className="mt-6 bg-base-200 p-2 rounded-sm">
+        <h1 className="font-bold text-xl">Q-Zone</h1>
+        <div className="flex flex-col items-center w-full">
+          <img
+            className="object-cover w-fit md:w-[70%]"
+            src={swimmingImg}
+            alt=""
+          />
+          <img
+            className="object-cover w-fit md:w-[70%]"
+            src={classImg}
+            alt=""
+          />
+          <img
+            className="object-cover w-fit md:w-[70%]"
+            src={playgroundImg}
+            alt=""
+          />
         </div>
+      </div>
     </div>
   );
 };
